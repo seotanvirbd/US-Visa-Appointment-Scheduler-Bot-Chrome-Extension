@@ -1,4 +1,4 @@
-# 🤖 US Visa Appointment Scheduler Bot
+# US Visa Appointment Scheduler Bot
 
 > A Chrome Extension that **automates US visa appointment slot monitoring** on [usvisascheduling.com](https://www.usvisascheduling.com). It runs a continuous check loop, detects available appointment slots using multi-layer DOM analysis, and sends real-time Gmail notifications — all with precise, configurable timing control.
 
