@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visa Scheduler Bot3</title>
+  <style>
+    body {
+      width: 420px;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+      backdrop-filter: blur(10px);
+    }
+    h2 {
+      margin: 0 0 20px 0;
+      font-size: 20px;
+      text-align: center;
+    }
+    .input-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+    input[type="email"], input[type="number"], input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+    small {
+      font-size: 11px;
+      opacity: 0.9;
+      margin-top: 5px;
+      display: block;
+      line-height: 1.4;
+    }
+    .button-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    button {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+    #startBot {
+      background: #10b981;
+      color: white;
+    }
+    #startBot:hover {
+      background: #059669;
+    }
+    #stopBot {
+      background: #ef4444;
+      color: white;
+    }
+    #stopBot:hover {
+      background: #dc2626;
+    }
+    #stopBot:disabled, #startBot:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .status {
+      margin-top: 15px;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 5px;
+      text-align: center;
+      font-size: 13px;
+      min-height: 20px;
+    }
+    .status.active {
+      background: rgba(16, 185, 129, 0.3);
+    }
+    .status.error {
+      background: rgba(239, 68, 68, 0.3);
+    }
+    .info-box {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 15px;
+      font-size: 12px;
+    }
+    .timing-info {
+      background: rgba(59, 130, 246, 0.3);
+      padding: 8px;
+      border-radius: 5px;
+      margin-top: 10px;
+      font-size: 11px;
+      border-left: 3px solid #3b82f6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🎯 US Visa Scheduler 3</h2>
+    
+    <div class="info-box">
+      ✉️ <strong>Email via Gmail:</strong> Make sure you're logged into Gmail in this browser!
+    </div>
+    
+    <div class="input-group">
+      <label for="notifyEmail">Your Email(s) - separate multiple with commas:</label>
+      <input type="text" id="notifyEmail" placeholder="email1@gmail.com, email2@gmail.com" required>
+      <small>Enter one or more emails separated by commas</small>
+    </div>
+    
+    <div class="input-group">
+      <label for="checkInterval">🔄 Loop Cycle Interval (seconds):</label>
+      <input type="number" id="checkInterval" value="50" min="10" max="300" required>
+      <small>⏱️ How often to check for slots (recommended: 30-60 seconds)</small>
+    </div>
+    
+    <div class="input-group">
+      <label for="notificationInterval">📧 Email Notification Interval (seconds):</label>
+      <input type="number" id="notificationInterval" value="200" min="30" max="3600" required>
+      <small>📬 How often to send "No Slots" emails. If slots ARE available, email is sent immediately!</small>
+    </div>
+    
+    <div class="timing-info">
+      <strong>⏰ Timing Info:</strong><br>
+      • Loop runs every <span id="displayCycleTime">50</span>s<br>
+      • "No slots" emails every <span id="displayNotifyTime">200</span>s<br>
+      • "Slots available" emails: IMMEDIATE! 🚀
+    </div>
+    
+    <div class="button-group">
+      <button id="startBot">▶️ Start Bot</button>
+      <button id="stopBot" disabled>⏹️ Stop Bot</button>
+    </div>
+    
+    <div class="status" id="status">Ready to start</div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>

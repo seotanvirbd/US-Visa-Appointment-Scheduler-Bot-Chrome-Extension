@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "US Visa Scheduler Bot3",
+  "version": "2.0.0",
+  "description": "Automates US visa appointment scheduling and slot checking",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "tabs",
+    "notifications"
+  ],
+  "host_permissions": [
+    "https://usvisascheduling.com/*",
+    "https://www.usvisascheduling.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Visa Scheduler"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://usvisascheduling.com/*",
+        "https://www.usvisascheduling.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://mail.google.com/*"
+      ],
+      "js": ["gmail-composer.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
